@@ -1,0 +1,4 @@
+Auth(
+    login: "", // put your bot's account login here
+    token: "", // put your bot's account token here
+)
