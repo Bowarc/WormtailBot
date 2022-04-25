@@ -1,24 +1,25 @@
-use log::{debug, error, info, trace, warn, Level};
+use log::error;
 use ron::de::from_reader;
 use serde::Deserialize;
-use std::{collections::HashMap, fs::File};
+use std::fs::File;
 
 const AUTH_FILE: &str = "/t.ron";
 
-#[derive(Debug, Deserialize)]
-pub struct Auth {
+#[derive(Debug, Deserialize, Clone)]
+pub struct BotAuth {
     pub login: String,
-    pub token: String,
+    pub client_id: String,
+    pub oauth_token: String,
 }
 
-pub fn get(path: String) -> Option<Auth> {
+pub fn get(path: String) -> Option<BotAuth> {
     let f = File::open(format!("{}{}", path, AUTH_FILE))
-        .expect(&format!("Unable to read {}", AUTH_FILE));
+        .unwrap_or_else(|_| panic!("Unable to read {}", AUTH_FILE));
 
-    let auth: Option<Auth> = match from_reader(f) {
+    let auth: Option<BotAuth> = match from_reader(f) {
         Ok(x) => Some(x),
         Err(e) => {
-            println!("Unable to deserialize {}", AUTH_FILE);
+            error!("Unable to deserialize {}, {}", AUTH_FILE, e);
             None
         }
     };

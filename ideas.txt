@@ -1,0 +1,3 @@
+Trigger list for each link, 
+triggers and prefix goes pair
+Trigger::StartWith("!help")

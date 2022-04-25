@@ -1,4 +1,5 @@
-Auth(
+BotAuth(
     login: "", // put your bot's account login here
-    token: "", // put your bot's account token here
+    client_id: "", // put your bot's client id here
+    oauth_token: "", // put your bot's account OAuth token here
 )

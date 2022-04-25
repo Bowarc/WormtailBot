@@ -616,6 +616,7 @@ dependencies = [
  "reqwest",
  "ron",
  "serde",
+ "serde_json",
  "tokio",
  "twitch-irc",
 ]
